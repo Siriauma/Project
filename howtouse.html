@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALICONURSESHIFT (สีตามภาพ)</title>
+    <style>
+        /* --- General Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f7ff; /* สีพื้นหลังหลัก (ฟ้าอ่อนมาก) */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- Header / Navigation Bar --- */
+        .navbar {
+            background-color: #ffffff; /* สีขาว */
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- Logo --- */
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            font-style: italic;
+            color: #2a9d8f; /* สีโลโก้ (เขียวอมฟ้า) */
+            text-decoration: none;
+        }
+
+        /* --- Navigation Links --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555555; /* สีลิงก์เมนู (เทาเข้ม) */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+        /* --- Login Button --- */
+        .login-button {
+            background-color: #0000ff; /* สีปุ่ม (น้ำเงินสด) */
+            color: #ffffff; /* สีตัวอักษรปุ่ม (ขาว) */
+            text-decoration: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #0000cc; /* สีน้ำเงินเข้มขึ้น */
+        }
+
+        /* --- Hero Section (Main Content) --- */
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+            /* สีพื้นหลังส่วนเนื้อหา (ฟ้าอ่อน) */
+            background-color: #e6f2ff; 
+            position: relative;
+            overflow: hidden;
+            
+            /* หมายเหตุ: หากต้องการให้เหมือนเป๊ะ 
+               ต้องใช้รูปภาพพื้นหลังที่มีลายหกเหลี่ยมและกากบาท
+               เช่น background-image: url('your-medical-bg.png'); 
+            */
+        }
+
+        /* --- EKG Line (Simplified) --- */
+        .ekg-line {
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            /* ใช้ SVG จำลองเส้น EKG ด้วยสี #a0c4ff */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 H 20 L 25 5 L 30 15 L 35 10 H 70 L 72 8 L 75 12 L 78 10 H 100' stroke='%23a0c4ff' stroke-width='0.5' fill='none' /%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 100px 50px;
+            opacity: 0.7; /* ความจางของเส้น */
+        }
+
+        /* --- Hero Content Box --- */
+        .hero-box {
+            /* สีกล่องข้อความ (ขาวกึ่งโปร่งใส) */
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 3rem 5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .hero-box h1 {
+            font-size: 2.5rem;
+            color: #333333; /* สีข้อความหลัก (เทาเข้มเกือบดำ) */
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">ALICONURSESHIFT</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">วิธีการใช้งาน</a></li>
+                    <li><a href="#">เกี่ยวกับระบบ</a></li>
+                    <li><a href="#" class="login-button">เข้าสู่ระบบ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        
+        <div class="hero-box">
+            <h1>หัดใช้เองบ้างตะ ไม่ใช่ยากนิ</h1>
+        </div>
+
+        <div class="ekg-line"></div>
+
+    </main>
+
+</body>
+</html>

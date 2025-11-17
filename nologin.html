@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTONURSESHIFT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Prompt", sans-serif;
+    }
+
+    body {
+      background-color: #f8faff;
+      color: #001c55;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background-color: #fff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px; 
+    }
+
+    .logo-img {
+      width: 50px; 
+      height: 50px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem; 
+      font-weight: 600;
+      color: #1e2a78;
+      margin-left: -10px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .menu a:hover {
+      color: #1e2a78;
+    }
+
+    .login-btn {
+      background-color: #1e2a78;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #2a3ba8;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url("background03.png") no-repeat center center/cover;
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #0b2c6d;
+      background-color: #eaf4ff; /* สีพื้นหลังสำรอง */
+    }
+
+    .hero-content h1 {
+      font-size: 4rem; /* ตัวอักษรใหญ่สุด */
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .hero-content p {
+      font-size: 2rem;
+      margin-top: 15px;
+      color: #1a3b77;
+    }
+
+    
+    @media (max-width: 1024px) {
+      .hero-content h1 {
+        font-size: 3rem; /* ลดขนาดลงเล็กน้อย */
+      }
+      .hero-content p {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 20px; 
+        padding: 15px 30px; 
+      }
+      
+      .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%; 
+      }
+      
+      .login-btn {
+          width: 100%; 
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem; /* ลดขนาดลงอีก */
+      }
+
+      .hero-content p {
+        font-size: 1.2rem; 
+      }
+    }
+    
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 15px 20px; /* ลดระยะขอบซ้าย-ขวา */
+      }
+      
+      .hero-content h1 {
+        font-size: 1.8rem; /* เล็กสุดๆ */
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="logo" class="logo-img">
+      <span class="logo-text">AUTONURSESHIFT</span>
+    </div>
+    <nav class="menu">
+     <a href="howtouse.html">วิธีการใช้งาน</a>
+     <a href="about.html">เกี่ยวกับระบบ</a>
+     <button class="login-btn" onclick="location.href='login.html'">เข้าสู่ระบบ</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>จัดเวรพยาบาล<br>อัตโนมัติในไม่กี่คลิก</h1>
+      <p>ลดภาระ จัดเวรเป็นธรรม เช็คได้ทุกที่ ทุกเวลา</p>
+    </div>
+  </section>
+</body>
+</html>

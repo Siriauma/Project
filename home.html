@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTONURSESHIFT - หน้าหลัก</title>
+    
+    <!-- 1. Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Import Google Fonts (Kanit) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. Import Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- 4. Custom Styles -->
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f7fafc; /* Tailwind bg-gray-100 */
+        }
+        .pb-safe {
+             padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex flex-col h-screen">
+
+        <!-- ===== Header ===== -->
+        <header class="sticky top-0 z-30 bg-white shadow-sm">
+            <div class="max-w-screen-md mx-auto px-4 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- ส่วนทักทายผู้ใช้ (รอข้อมูลจริง) -->
+                    <div>
+                        <h1 class="text-xl font-bold text-indigo-800">ชื่อ-นามสกุล</h1>
+                        <p class="text-xs font-light text-gray-500 mt-1">วันที่ปัจจุบัน</p>
+                    </div>
+                    <!-- รูปโปรไฟล์ (รอข้อมูลจริง) -->
+                    <div class="flex-shrink-0">
+                        <img class="w-14 h-14 rounded-full border-2 border-indigo-200 shadow-md object-cover bg-gray-100" 
+                             src="https://placehold.co/100x100/EBF4FF/7F8_?text=%E0%B8%A3%E0%B8%B9%E0%B8%9B&font=kanit" <!-- Placeholder -->
+                             alt="รูปโปรไฟล์">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== Main Content (Scrollable) ===== -->
+        <main class="flex-1 overflow-y-auto pb-28">
+            <div class="max-w-screen-md mx-auto p-4 md:p-6 space-y-6">
+
+                <!-- การ์ดที่ 1: เวรที่กำลังจะมาถึง -->
+                <div class="bg-white rounded-xl shadow-lg p-5">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">เวรที่กำลังจะมาถึง</h2>
+                    
+                    <!-- สถานะว่าง (Empty State) -->
+                    <div class="text-center py-4">
+                        <i class="fas fa-calendar-check text-3xl text-gray-300 mb-2"></i>
+                        <p class="text-sm text-gray-500">ไม่มีเวรที่กำลังจะมาถึง</p>
+                    </div>
+
+                    <!-- 
+                        -- ตัวอย่างโค้ดสำหรับใส่ข้อมูลจริง --
+                        
+                        <div class="mb-4">
+                            <p class="text-sm font-medium text-gray-500 mb-1">เวรของวันนี้</p>
+                            <div class="flex items-center justify-between bg-indigo-50 rounded-lg p-3">
+                                <span class="text-base font-semibold text-indigo-700">08.00 - 16.00 น.</span>
+                                <span class="text-xs font-medium bg-indigo-200 text-indigo-800 px-3 py-1 rounded-full">เวรเช้า</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 mb-1">เวรของพรุ่งนี้</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                                    <span class="text-base font-semibold text-gray-700">16.00 - 00.00 น.</span>
+                                    <span class="text-xs font-medium bg-gray-200 text-gray-800 px-3 py-1 rounded-full">เวรบ่าย</span>
+                                </div>
+                            </div>
+                        </div>
+                    -->
+                </div>
+
+                <!-- การ์ดที่ 2: สรุปข้อมูล (Grid) -->
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- สรุป 1 -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-indigo-600" id="total-month">0</p>
+                        <p class="text-xs text-gray-500 mt-1">เวรทั้งหมดในเดือนนี้</p>
+                    </div>
+                    <!-- สรุป 2 -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-blue-600" id="total-week">0</p>
+                        <p class="text-xs text-gray-500 mt-1">เวรทั้งหมดในสัปดาห์นี้</p>
+                    </div>
+                    <!-- สรุป 3 -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-yellow-600" id="pending-exchange">0</p>
+                        <p class="text-xs text-gray-500 mt-1">รออนุมัติการแลก</p>
+                    </div>
+                    <!-- สรุป 4 -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-red-600" id="pending-trade">0</p>
+                        <p class="text-xs text-gray-500 mt-1">รออนุมัติซื้อ-ขาย</p>
+                    </div>
+                </div>
+
+                <!-- การ์ดที่ 3: ประวัติการทำรายการ -->
+                <div class="bg-white rounded-xl shadow-lg p-5">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">ประวัติการทำรายการ</h2>
+                    <div class="space-y-4">
+                        
+                        <!-- สถานะว่าง (Empty State) -->
+                        <div class="text-center py-4">
+                            <i class="fas fa-history text-3xl text-gray-300 mb-2"></i>
+                            <p class="text-sm text-gray-500">ไม่มีประวัติการทำรายการล่าสุด</p>
+                        </div>
+                        
+                        <!-- 
+                            -- ตัวอย่างโค้ดสำหรับใส่ข้อมูลจริง --
+
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-green-700">แลกเปลี่ยนเวรสำเร็จ</p>
+                                    <p class="text-xs text-gray-500 truncate">14 มิ.ย. (เวรเช้า) <i class="fas fa-arrow-right text-xs mx-1"></i> 16 มิ.ย. (เวรเช้า)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                                    <i class="fas fa-times text-red-600"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-red-700">ขายเวรไม่สำเร็จ</p>
+                                    <p class="text-xs text-gray-500 truncate">19 มิ.ย. (เวรดึก)</p>
+                                </div>
+                            </div>
+                        -->
+
+                        <!-- ปุ่มดูทั้งหมด -->
+                        <div class="pt-2">
+                            <a href="#" class="block w-full text-center text-indigo-600 text-sm font-medium py-2 rounded-lg hover:bg-indigo-50 transition-colors">
+                                ดูประวัติทั้งหมด
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> <!-- สิ้นสุด max-w-screen-md -->
+        </main>
+
+        <!-- ===== Footer Navigation ===== -->
+        <footer class="fixed bottom-0 left-0 right-0 z-20 bg-white border-t border-gray-200 pb-safe">
+            <div class="max-w-screen-md mx-auto grid grid-cols-5">
+                
+                <!-- 1. หน้าหลัก (Active) -->
+                <a href="#" class="flex flex-col items-center justify-center p-3 text-indigo-600">
+                    <i class="fas fa-home text-xl"></i>
+                    <span class="text-xs font-medium mt-1">หน้าหลัก</span>
+                </a>
+
+                <!-- 2. แลกเปลี่ยนเวร -->
+                <a href="#" class="flex flex-col items-center justify-center p-3 text-gray-500 hover:text-indigo-600">
+                    <i class="fas fa-exchange-alt text-xl"></i>
+                    <span class="text-xs font-medium mt-1">แลกเปลี่ยน</span>
+                </a>
+
+                <!-- 3. ซื้อขายเวร -->
+                <a href="#" class="flex flex-col items-center justify-center p-3 text-gray-500 hover:text-indigo-600">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="text-xs font-medium mt-1">ซื้อ/ขาย</span>
+                </a>
+
+                <!-- 4. สถิติ -->
+                <a href="#" class="flex flex-col items-center justify-center p-3 text-gray-500 hover:text-indigo-600">
+                    <i class="fas fa-chart-bar text-xl"></i>
+                    <span class="text-xs font-medium mt-1">สถิติ</span>
+                </a>
+
+                <!-- 5. ตารางเวร -->
+                <a href="#" class="flex flex-col items-center justify-center p-3 text-gray-500 hover:text-indigo-600">
+                    <i class="fas fa-calendar-alt text-xl"></i>
+                    <span class="text-xs font-medium mt-1">ตารางเวร</span>
+                </a>
+
+            </div>
+        </footer>
+
+    </div> <!-- สิ้นสุด flex-col h-screen -->
+
+</body>
+</html>

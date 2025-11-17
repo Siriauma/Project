@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTONURSESHIFT - รีเซ็ตรหัสผ่าน</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&family=Prompt:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- การตั้งค่าทั่วไป --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Kanit', sans-serif;
+            background-color: #f0f2f5; 
+        }
+
+        body {
+            background-image: url('background04.png'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* --- โลโก้ --- */
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            font-family: "Prompt", sans-serif;
+            font-weight: 700;
+            color: #222; 
+            display: flex; 
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-img {
+            width: 60px;
+            height: 60px; 
+            object-fit: contain; 
+        }
+        .logo-text {
+             font-size: 1.5rem; 
+            font-weight: 600;
+            color: #1e2a78;
+            margin-left: -10px;
+        }
+
+        /* --- กล่องรีเซ็ต --- */
+        .reset-box {
+            background: #ffffff;
+            padding: 2.5rem 3rem 3rem 3rem; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            width: 500px; 
+            max-width: 90%;
+            position: relative; 
+        }
+
+        .back-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 1.5rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        /* --- เนื้อหา --- */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            width: 100%;
+        }
+        .content-wrapper h2 {
+            color: #191970; 
+            font-size: 2rem; 
+            font-weight: 700;
+            margin-top: 1rem; 
+            margin-bottom: 1rem;
+        }
+        .content-wrapper h2 i {
+            margin-right: 10px;
+            color: #f0ad4e; 
+        }
+        .content-wrapper .sub-text {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- ฟอร์ม --- */
+        .reset-form {
+            width: 100%;
+        }
+        .reset-form label {
+            display: block;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+            margin-left: 20px; 
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 18px 60px 18px 25px; 
+            border: 1px solid #eee;
+            background: #fff;
+            border-radius: 50px; 
+            font-size: 1rem;
+            font-family: 'Kanit', sans-serif;
+            outline: none; 
+            transition: border-color 0.3s ease; 
+        }
+        .input-group input::placeholder {
+            color: #aaa;
+        }
+        .input-group .icon-right-eye {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* สไตล์สำหรับช่องยืนยันรหัสที่ไม่ตรง */
+        .input-group input.mismatch {
+            border-color: #d9534f; /* สีแดง */
+        }
+        
+
+        /* กล่องข้อกำหนดรหัสผ่าน */
+        .validation-box {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: -0.5rem; /* ดึงขึ้นเล็กน้อย */
+            border: 1px solid #f0f0f0; 
+            background-color: #fdfdfd; 
+            border-radius: 15px;
+        }
+        .validation-box ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+        .validation-box ul li {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease; 
+        }
+        .validation-box ul li.invalid {
+            color: #d9534f; /* สีแดง */
+        }
+        .validation-box ul li.invalid::before {
+            content: '×'; 
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        .validation-box ul li.valid {
+            color: #28a745; /* สีเขียว */
+        }
+        .validation-box ul li.valid::before {
+            content: '✓'; 
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* --- ปุ่ม --- */
+        .submit-btn {
+            background-color: #191970; 
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            font-family: 'Kanit', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%; 
+            margin-top: 1rem; 
+        }
+        .submit-btn:hover {
+            background-color: #2c2c94; 
+        }
+        
+        /* สไตล์ปุ่มเมื่อ "ปิดใช้งาน" */
+        .submit-btn:disabled {
+            background-color: #cccccc; 
+            color: #888888;
+            cursor: not-allowed; 
+        }
+        .submit-btn:disabled:hover {
+            background-color: #cccccc; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="logo">
+      <img src="logo.png" alt="logo" class="logo-img">
+      <span class="logo-text">AUTONURSESHIFT</span>
+    </div>
+
+    <div class="reset-box">
+        
+        <a href="otpcode.html" class="back-link">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        
+        <div class="content-wrapper">
+            <h2>
+                <i class="fas fa-key"></i>
+                รีเซ็ตรหัสผ่าน
+            </h2>
+            
+            <p class="sub-text">
+                โปรดสร้างรหัสผ่านใหม่ที่แตกต่างจากรหัสเก่า<br>
+                เเนะนำให้มีความยาว 8 ตัวอักษรขึ้นไป และผสมอักษร ตัวเลข และสัญลักษณ์
+            </p>
+            
+            <form class="reset-form">
+                
+                <label for="new-password">รหัสผ่าน</label>
+                <div class="input-group">
+                    <input type="password" id="new-password" placeholder="กรุณากรอกรหัสผ่านใหม่ของคุณ" required>
+                    <i class="fas fa-eye icon-right-eye toggle-password"></i>
+                </div>
+
+                <div class="validation-box">
+                    <ul>
+                        <li id="length" class="invalid">ความยาวอย่างน้อย 8 ตัวอักษร</li>
+                        <li id="upper" class="invalid">ตัวอักษรพิมพ์ใหญ่ (A-Z)</li>
+                        <li id="lower" class="invalid">ตัวอักษรพิมพ์เล็ก (a-z)</li>
+                        <li id="number" class="invalid">ตัวเลข (0-9)</li>
+                        <li id="special" class="invalid">อักขระพิเศษ (!@#$%^&*_-)</li>
+                    </ul>
+                </div>
+                
+                <label for="confirm-password">ยืนยันรหัสผ่าน</label>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" placeholder="ยืนยันรหัสผ่าน" required>
+                    <i class="fas fa-eye icon-right-eye toggle-password"></i>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="reset-btn" disabled>ยืนยัน</button>
+            </form>
+        </div>
+        
+    </div>
+
+    <script>
+        // --- ส่วนที่ 1: สคริปต์สำหรับ "ไอคอนรูปตา" ---
+        const toggleIcons = document.querySelectorAll('.toggle-password');
+        
+        toggleIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+
+        // --- ส่วนที่ 2: สคริปต์สำหรับ "ตรวจสอบรหัสผ่าน" ---
+        
+        // 2.1 เลือก Element ที่ต้องใช้
+        const newPasswordInput = document.getElementById('new-password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const resetBtn = document.getElementById('reset-btn');
+        
+        const lengthCheck = document.getElementById('length');
+        const upperCheck = document.getElementById('upper');
+        const lowerCheck = document.getElementById('lower');
+        const numberCheck = document.getElementById('number');
+        const specialCheck = document.getElementById('special');
+
+        // 2.2 ฟังก์ชันตัวช่วยสำหรับอัปเดต '✓' / '×'
+        function updateValidation(element, isValid) {
+            if (isValid) {
+                element.classList.remove('invalid');
+                element.classList.add('valid');
+            } else {
+                element.classList.remove('valid');
+                element.classList.add('invalid');
+            }
+        }
+
+        // 2.3 ฟังก์ชันหลักที่จะรันทุกครั้งที่พิมพ์
+        function validateForm() {
+            const passValue = newPasswordInput.value;
+            const confirmValue = confirmPasswordInput.value;
+            
+            let allRulesMet = true; 
+
+            // (A) ตรวจสอบเงื่อนไข 5 ข้อของรหัสผ่านใหม่
+            const isLengthValid = passValue.length >= 8;
+            updateValidation(lengthCheck, isLengthValid);
+            if (!isLengthValid) allRulesMet = false;
+
+            const isUpperValid = /[A-Z]/.test(passValue);
+            updateValidation(upperCheck, isUpperValid);
+            if (!isUpperValid) allRulesMet = false;
+            
+            const isLowerValid = /[a-z]/.test(passValue);
+            updateValidation(lowerCheck, isLowerValid);
+            if (!isLowerValid) allRulesMet = false;
+
+            const isNumberValid = /[0-9]/.test(passValue);
+            updateValidation(numberCheck, isNumberValid);
+            if (!isNumberValid) allRulesMet = false;
+
+            // (คุณสามารถเปลี่ยนชุดอักขระพิเศษได้ตามต้องการ)
+            const isSpecialValid = /[!@#$%^&*_-]/.test(passValue);
+            updateValidation(specialCheck, isSpecialValid);
+            if (!isSpecialValid) allRulesMet = false;
+            
+            // (B) ตรวจสอบว่ารหัสผ่าน 2 ช่องตรงกัน
+            let passwordsMatch = false;
+            if (confirmValue.length > 0) { // เริ่มเช็คต่อเมื่อช่อง 2 เริ่มพิมพ์
+                if (passValue === confirmValue) {
+                    passwordsMatch = true;
+                    confirmPasswordInput.classList.remove('mismatch');
+                } else {
+                    passwordsMatch = false;
+                    confirmPasswordInput.classList.add('mismatch');
+                }
+            } else {
+                confirmPasswordInput.classList.remove('mismatch');
+                passwordsMatch = false; // ถ้าช่อง 2 ว่าง ถือว่ายังไม่ match
+            }
+            
+            // (C) อัปเดตปุ่ม "ยืนยัน"
+            // ต้องผ่านทั้ง 2 เงื่อนไข (A และ B)
+            if (allRulesMet && passwordsMatch) {
+                resetBtn.disabled = false;
+            } else {
+                resetBtn.disabled = true;
+            }
+        }
+
+        // 2.4 สั่งให้ฟังก์ชันทำงานเมื่อพิมพ์ในช่องใดช่องหนึ่ง
+        newPasswordInput.addEventListener('input', validateForm);
+        confirmPasswordInput.addEventListener('input', validateForm);
+
+
+        // --- [เพิ่ม] ส่วนที่ 3: การจัดการเมื่อกดยืนยัน (เด้งไปหน้าใหม่) ---
+
+        // 3.1 เลือกฟอร์ม
+        const resetForm = document.querySelector('.reset-form');
+
+        // 3.2 เพิ่ม event listener 'submit'
+        // Event นี้จะทำงานเมื่อ:
+        // 1. ผู้ใช้คลิกปุ่ม "ยืนยัน" (ที่มี type="submit")
+        // 2. และปุ่มนั้น *ไม่ได้* ถูก "disabled" (ซึ่งโค้ดส่วนที่ 2 จัดการอยู่)
+        resetForm.addEventListener('submit', function(event) {
+            
+            // (A) หยุดการทำงานปกติของฟอร์ม (ซึ่งคือการรีโหลดหน้า)
+            event.preventDefault(); 
+            
+            // (B) สั่งให้เบราว์เซอร์เด้งไปที่หน้า 'newcode_cp.html'
+            // (ถ้าไฟล์ของคุณชื่อ newcode_cp.php หรือ .aspx ฯลฯ ก็สามารถแก้ได้ตรงนี้)
+            
+            // (คุณสามารถใส่ alert ขึ้นมาก่อนได้ ถ้าต้องการ)
+            // alert('รีเซ็ตรหัสผ่านสำเร็จ! กำลังไปที่หน้าถัดไป...'); 
+            
+            window.location.href = 'newcode_cp.html'; 
+        });
+
+    </script>
+
+</body>
+</html>
