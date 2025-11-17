@@ -17,6 +17,8 @@
       background-color: #f8faff;
       color: #001c55;
     }
+
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -29,19 +31,19 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px; 
+      gap: 10px;
     }
 
     .logo-img {
-      width: 50px; 
-      height: 50px;
+       width: 50px;
+       height: 50px;
+       object-fit: contain; 
     }
 
     .logo-text {
-      font-size: 1.5rem; 
+      font-size: 22px;
       font-weight: 600;
       color: #1e2a78;
-      margin-left: -10px;
     }
 
     .menu {
@@ -58,116 +60,116 @@
     }
 
     .menu a:hover {
-      color: #1e2a78;
+      color: #0d2ae3;
     }
 
     .login-btn {
-      background-color: #1e2a78;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background-color: #72b2ed;
+      text-decoration: none;
+      color: #f5efef;
       border: none;
       border-radius: 25px;
       padding: 10px 25px;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 16px;
       cursor: pointer;
       transition: 0.3s;
-    }
-
-    .login-btn:hover {
-      background-color: #2a3ba8;
     }
 
     /* Hero Section */
     .hero {
       background: url("background03.png") no-repeat center center/cover;
-      min-height: 80vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #0b2c6d;
-      background-color: #eaf4ff; /* สีพื้นหลังสำรอง */
+      background-color: #eaf4ff;
     }
 
     .hero-content h1 {
-      font-size: 4rem; /* ตัวอักษรใหญ่สุด */
+      font-size: 3rem;
       font-weight: 700;
       line-height: 1.4;
     }
 
     .hero-content p {
-      font-size: 2rem;
+      font-size: 1.2rem;
       margin-top: 15px;
       color: #1a3b77;
     }
 
-    
-    @media (max-width: 1024px) {
-      .hero-content h1 {
-        font-size: 3rem; /* ลดขนาดลงเล็กน้อย */
-      }
-      .hero-content p {
-        font-size: 1.5rem;
-      }
+    /* Responsive */
+
+  /* 1. สำหรับโทรศัพท์มือถือและหน้าจอขนาดเล็ก (ไม่เกิน 576px) */
+  @media (max-width: 576px) {
+    .hero-content h1 {
+      font-size: 2rem; /* เล็กลงกว่าเดิมเล็กน้อยสำหรับจอที่เล็กมาก */
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        gap: 20px; 
-        padding: 15px 30px; 
-      }
-      
-      .menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%; 
-      }
-      
-      .login-btn {
-          width: 100%; 
-      }
+    .hero-content p {
+      font-size: 1rem;
+    }
+  }
 
-      .hero-content h1 {
-        font-size: 2.5rem; /* ลดขนาดลงอีก */
-      }
+  /* 2. สำหรับไอแพด/แท็บเล็ต และหน้าจอขนาดกลาง (ไม่เกิน 768px) */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px 20px; /* ลด padding แนวนอน */
+    }
 
-      .hero-content p {
-        font-size: 1.2rem; 
-      }
+    .logo-text {
+      font-size: 20px;
     }
     
-    
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 15px 20px; /* ลดระยะขอบซ้าย-ขวา */
-      }
-      
-      .hero-content h1 {
-        font-size: 1.8rem; /* เล็กสุดๆ */
-      }
+    /* 🌟 ใช้ขนาดที่คุณปรับล่าสุดสำหรับ h1 */
+    .hero-content h1 {
+      font-size: 2.5rem; 
+    }
 
-      .hero-content p {
-        font-size: 1rem;
-      }
+    /* 🌟 ใช้ขนาดที่คุณปรับล่าสุดสำหรับ p */
+    .hero-content p {
+      font-size: 1.2rem; 
+    }
+  }
+
+  /* 3. สำหรับไอแพด/แท็บเล็ตขนาดใหญ่ (ไม่เกิน 992px) */
+  @media (max-width: 992px) {
+    .navbar {
+      padding: 15px 40px;
     }
     
+    .hero-content h1 {
+      font-size: 3rem; /* ขนาดใหญ่ขึ้นสำหรับแท็บเล็ต */
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+    }
+  }
+      
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <header class="navbar">
     <div class="logo">
       <img src="logo.png" alt="logo" class="logo-img">
       <span class="logo-text">AUTONURSESHIFT</span>
     </div>
     <nav class="menu">
-     <a href="howtouse.html">วิธีการใช้งาน</a>
-     <a href="about.html">เกี่ยวกับระบบ</a>
-     <button class="login-btn" onclick="location.href='login.html'">เข้าสู่ระบบ</button>
+      <a href="sytemwork.html">วิธีการใช้งาน</a>
+      <a href="system.html">เกี่ยวกับระบบ</a>
+      <a href="login.html" class="login-btn">เข้าสู่ระบบ</a> 
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h1>จัดเวรพยาบาล<br>อัตโนมัติในไม่กี่คลิก</h1>
